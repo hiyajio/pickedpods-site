@@ -4,6 +4,11 @@ import requests
 
 
 feed = requests.get("https://daringfireball.net/thetalkshow/rss")
-soup = BeautifulSoup(feed.text, 'html.parser')
+soup = BeautifulSoup(feed.text, 'lxml')
 
-print(soup.title)
+episodes = soup.find_all("item")
+
+titles = map(lambda x: x.title, episodes)
+
+for title in titles:
+	print(title.text)
