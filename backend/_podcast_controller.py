@@ -62,7 +62,7 @@ class PodcastController:
 		
 		return representation
 	
-	def getEpisodes(self, url, num = -1):
+	def getEpisodes(self, url, count = -1):
 		feed = requests.get(url)
 		feed.raise_for_status()
 		soup = BeautifulSoup(feed.text, 'html.parser')
@@ -72,17 +72,17 @@ class PodcastController:
 		
 		episodesXML = soup.rss.findAll("item")
 			
-		if num <= 0:
-			num = len(episodesXML)
+		if count <= 0:
+			count = len(episodesXML)
 			
 		episodes = []
 			
-		for episodeXML in episodesXML[:num]:
+		for episodeXML in episodesXML[:count]:
 			epTitle = episodeXML.title.string	
 			epURL = episodeXML.enclosure["url"]
 			
 			try:
-				epDuration = episodeXML.enclosure["length"]
+				epDuration = int(episodeXML.enclosure["length"])
 			except:
 				epDuration = -1
 				
@@ -110,21 +110,9 @@ class PodcastController:
 
 		return episodes
 
-		
-# feed = requests.get("https://daringfireball.net/thetalkshow/rss")
-# soup = BeautifulSoup(feed.text, 'lxml')
-# 
-# episodes = soup.find_all("item")
-# 
-# titles = map(lambda x: x.title, episodes)
-# 
-# for title in titles:
-# 	print(title.text)
 
 if __name__ == "__main__":
 	controller = PodcastController()
-	
-	print(controller.getAllPodcasts())
-	#eps = controller.getEpisodes("https://rss.simplecast.com/podcasts/2389/rss")
+	controller.loadPodcasts()
 	
 	
