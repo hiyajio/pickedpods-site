@@ -13,34 +13,70 @@ def getAll():
     
 @app.route('/podcasts/', methods=["POST"])
 def getPod():
+	output = {}
+
 	try:
 		url = json.loads(request.data)["url"]
-		return json.dumps(controller.getPodcastInfo(url))
-	except:
-		return json.dumps({"error":"POST body is not valid"})
 		
-	return ""
+		podInfo = controller.getPodcastInfo(url)
+		
+		if podInfo is None:
+			output["error"] = "URL is not a valid podcast url"
+		else:
+			output = podInfo
+			
+			
+	except:
+		output["error"] = "POST body is not valid"
+		
+	return json.dumps(output)
 	
 @app.route('/podcasts/subscribe', methods=["POST", "PUT"])
 def subPod():
-	pass
+	output = {}
+
+	try:
+		url = json.loads(request.data)["url"]
+		output = controller.subscribe(url)
+			
+	except:
+		output["error"] = "POST body is not valid"
+		
+	return json.dumps(output)
 
 	
 @app.route('/podcasts/unsubscribe', methods=["DELETE"])
 def unsubPod():
-	pass
+	output = {}
+
+	try:
+		url = json.loads(request.data)["url"]
+		output = controller.unsubscribe(url)
+			
+	except:
+		output["error"] = "POST body is not valid"
+		
+	return json.dumps(output)
 	
 @app.route('/episodes/', methods=["POST"])
 def getEps():
+	output = {}
+
 	try:
 		data = json.loads(request.data)
 		url = data["url"]
 		count = data.get("count", -1)
-		return json.dumps(controller.getEpisodes(url,count=count))
-	except:
-		return json.dumps({"error":"POST body is not valid"})
 		
-	return ""
+		eps = controller.getEpisodes(url,count=count)
+		
+		if eps is None:
+			output["error"] = "URL is not a valid podcast url"
+			
+		output = eps
+	except:
+		output["error"] = "POST body is not valid"
+		
+	return json.dumps(output)
 
 if __name__ == "__main__":
 	app.run(port=12345)

@@ -14,9 +14,12 @@ class PodcastController:
 		if not os.path.isfile(self.jsonPATH):
 			self.loadPodcasts()
 		else:
-			file = open(self.jsonPATH, "r")
-			self.podcasts = json.loads(file.read())
-			file.close()
+			try:
+				file = open(self.jsonPATH, "r")
+				self.podcasts = json.loads(file.read())
+				file.close()
+			except:
+				self.loadPodcasts()
 		
 	# Pre load some default podcasts
 	def loadPodcasts(self):
@@ -27,7 +30,10 @@ class PodcastController:
 		podcasts = []
 		
 		for url in urls:
-			podcasts.append(self.getPodcastInfo(url))
+			newPod = self.getPodcastInfo(url)
+			
+			if newPod is not None:
+				podcasts.append(newPod)
 	
 		file = open(self.jsonPATH, "w")
 		file.write(json.dumps(podcasts))
@@ -43,7 +49,7 @@ class PodcastController:
 		soup = BeautifulSoup(feed.text, 'lxml')
 		
 		if soup.rss is None: 
-			return json.dumps({}) # Not an RSS Link
+			return None # Not an RSS Link
 		
 		rss = soup.rss
 		
@@ -68,7 +74,7 @@ class PodcastController:
 		soup = BeautifulSoup(feed.text, 'html.parser')
 		
 		if soup.rss is None: 
-			return json.dumps({}) # Not an RSS Link
+			return None # Not an RSS Link
 		
 		episodesXML = soup.rss.findAll("item")
 			
@@ -109,6 +115,41 @@ class PodcastController:
 			episodes.append(representation)
 
 		return episodes
+		
+	def subscribe(self, url):
+		urls = [pod["rssFeed"] for pod in self.podcasts]
+		
+		if url in urls:
+			return {"error":"podcast already subscribed to"}
+	
+	
+		newPod = self.getPodcastInfo(url)
+		
+		if newPod is None:
+			return {"error":"URL is invalid"}
+			
+		self.podcasts.append(newPod)
+		
+		file = open(self.jsonPATH, "w")
+		file.write(json.dumps(self.podcasts))
+		file.close()
+			
+		return {"success":"successfully subscribed to podcast"}
+	
+	def unsubscribe(self, url):
+		urls = [pod["rssFeed"] for pod in self.podcasts]
+		
+		if url not in urls:
+			return {"error":"podcast is not subscribed to"}
+	
+	
+		self.podcasts = list(filter(lambda pod: pod["rssFeed"] != url, self.podcasts))
+		
+		file = open(self.jsonPATH, "w")
+		file.write(json.dumps(self.podcasts))
+		file.close()
+			
+		return {"success":"successfully unsubscribed to podcast"}
 
 
 if __name__ == "__main__":
