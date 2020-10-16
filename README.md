@@ -31,3 +31,22 @@ Programming Paradigms Final Project
 		"description":epDesc,
 		"duration":epDuration
 	}
+	
+## Backend Installation Instructions
+- All the python dependencies should already be installed in the `/backend` folder
+- In the unlikely event a dependency does not work, run:
+```
+pip3 install bs4
+pip3 install lxml
+pip3 install Flask
+```
+	
+## How To Run Server
+- Make sure you are in the `/backend` folder
+- run `python3 app.py`
+	- Note: port is 1234 by default, but can be changed in `app.py`
+
+## How To Run Tests
+- Make sure you are in the `/backend` folder and that the server is running locally
+- run `python3 test.py`
+- and `python3 test_api.py`
