@@ -1,40 +1,23 @@
 #!/usr/bin/env python3
-import unittest, requests, json
+import unittest, requests
 from bs4 import BeautifulSoup
+from _podcast_controller import PodcastController
 
-serverRoot = "http://127.0.0.1:12345/"
+
+controller = PodcastController()
 testURL = "https://rss.simplecast.com/podcasts/2389/rss"
 		
 class TestPodcastController(unittest.TestCase):
-	def testPodcastsAll(self):
-		res = requests.get(serverRoot + "podcasts/all")
-		self.assertEqual(res.status_code, 200)
+	def testGetAll(self):
+		podcasts = controller.getAllPodcasts()
+		testPodcast = controller.getPodcastInfo(testURL)
 		
-		data = json.loads(res.text)
-		self.assertTrue(isinstance(data, list))
-		
-		# Make sure all the podcasts are in a valid format
-		urls = [pod.get("rssFeed", "messedUp") for pod in data]
-		
-		self.assertFalse("messedUp" in urls)
-		self.assertTrue(testURL in urls)
-
-	def testPodcasts(self):
-		res = requests.post(serverRoot + "podcasts/", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		
-		data = json.loads(res.text)
-		self.assertTrue(data.get("error", "no error here"), "no error here")
-		
-		self.assertEqual(data["title"], "Do By Friday")
-		self.assertEqual(data["rssFeed"], testURL)
-		
-	def testEpisodes(self):
+		self.assertTrue(testPodcast in podcasts)
+	
+	def testGetEpisodes(self):
 		num = 6
-		res = requests.post(serverRoot + "episodes/", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertTrue(isinstance(data, list))
+	
+		episodes = controller.getEpisodes(testURL, num)
 		
 		res = requests.get(testURL)
 		rss = BeautifulSoup(res.text, "html.parser")
@@ -42,61 +25,46 @@ class TestPodcastController(unittest.TestCase):
 		eps = rss.find_all("item")[:num]
 		
 		for i in range(num):
-			self.assertEqual(data[i]["title"], eps[i].title.string)	
-	
-	def testPodcastsSubPOST(self):
-		# Remove test podcast from db
-		res = requests.delete(serverRoot + "podcasts/unsubscribe", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertEqual(data.get("error", "no error here"), "no error here")
+			self.assertEqual(episodes[i]["title"], eps[i].title.string)	
 		
-		# Make sure it's really unsubscribed
-		res = requests.get(serverRoot + "podcasts/all")
-		data = json.loads(res.text)
-		urls = [pod["rssFeed"] for pod in data]
+	def testGetPodcast(self):
+		podcast = controller.getPodcastInfo(testURL)
+		
+		res = requests.get(testURL)
+		rss = BeautifulSoup(res.text, "html.parser")
+		
+		self.assertEqual(podcast["title"], rss.title.string)
+		self.assertEqual(podcast["description"], rss.description.string)
+		self.assertEqual(podcast["showArt"], rss.find("itunes:image")["href"])
+		
+	def testUnsubscribe(self):
+		res = controller.unsubscribe(testURL)
+		
+		self.assertEqual(res.get("error", "no error here"), "no error here")
+		
+		podcasts = controller.getAllPodcasts()
+		urls = [pod["rssFeed"] for pod in podcasts]
+		
 		self.assertFalse(testURL in urls)
 		
-		# test subscribe POST
-		res = requests.post(serverRoot + "podcasts/subscribe", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertEqual(data.get("error", "no error here"), "no error here")
-	
-	def testPodcastsSubPUT(self):
-		# Remove test podcast from db
-		res = requests.delete(serverRoot + "podcasts/unsubscribe", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertEqual(data.get("error", "no error here"), "no error here")
+		controller.subscribe(testURL)
 		
-		# Make sure it's really unsubscribed
-		res = requests.get(serverRoot + "podcasts/all")
-		data = json.loads(res.text)
-		urls = [pod["rssFeed"] for pod in data]
+	
+	def testSubscribe(self):
+		res = controller.unsubscribe(testURL)
+		
+		self.assertEqual(res.get("error", "no error here"), "no error here")
+		
+		podcasts = controller.getAllPodcasts()
+		urls = [pod["rssFeed"] for pod in podcasts]
+		
 		self.assertFalse(testURL in urls)
 		
-		# test subscribe PUT
-		res = requests.put(serverRoot + "podcasts/subscribe", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertEqual(data.get("error", "no error here"), "no error here")
-	
-	def testPodcastUnsub(self):
-		# Remove test podcast from db
-		res = requests.delete(serverRoot + "podcasts/unsubscribe", json={"url":testURL})
-		self.assertEqual(res.status_code, 200)
-		data = json.loads(res.text)
-		self.assertEqual(data.get("error", "no error here"), "no error here")
+		controller.subscribe(testURL)
 		
-		# Make sure it's really unsubscribed
-		res = requests.get(serverRoot + "podcasts/all")
-		data = json.loads(res.text)
-		urls = [pod["rssFeed"] for pod in data]
-		self.assertFalse(testURL in urls)
-		
-		# put it back
-		res = requests.post(serverRoot + "podcasts/subscribe", json={"url":testURL})
+		podcasts = controller.getAllPodcasts()
+		urls = [pod["rssFeed"] for pod in podcasts]
+		self.assertTrue(testURL in urls)
 
 if __name__ == "__main__":
 	unittest.main()

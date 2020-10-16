@@ -48,5 +48,5 @@ pip3 install Flask
 
 ## How To Run Tests
 - Make sure you are in the `/backend` folder and that the server is running locally
-- run `python3 test.py`
-- and `python3 test_api.py`
+	- run `python3 test_api.py`
+- and `python3 test_ws.py`
