@@ -1,8 +1,9 @@
 # OO API
 
 ## What does it do?
-- This API takes podcast information and formats it into a more readable and easier to work with JSON. The api has the following functions
-- Podcasts can also be saved, and are stored in a json file as a "database"
+- This API takes podcast information and formats it into a more readable and easier to work with JSON. Podcasts can also be saved, and are stored in a json file as a "database"
+- The api has the following functions
+
 
 ### `loadPodcasts()`
 - For demo purposes, the api loads a list of podcasts so the database is not empty
