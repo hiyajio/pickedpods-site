@@ -20,5 +20,5 @@
 	
 
 ## How To Run Test
-- Make sure you are in the `/server` folder and that the server is running locally
+- Make sure you are in the `/ooapi` folder and that the server is running locally
 	- run `python3 test_ws.py`
