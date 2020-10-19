@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import unittest, requests, json
+import unittest, requests, json, sys
 from bs4 import BeautifulSoup
 
 serverRoot = "http://127.0.0.1:12345/"
@@ -24,6 +24,7 @@ class TestPodcastController(unittest.TestCase):
 		self.assertEqual(res.status_code, 200)
 		
 		data = json.loads(res.text)
+
 		self.assertTrue(data.get("error", "no error here"), "no error here")
 		
 		self.assertEqual(data["title"], "Do By Friday")

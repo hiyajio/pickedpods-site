@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
+import json, sys
+
+sys.path.append("../")
+
 from flask import Flask, request
-from _podcast_controller import PodcastController
-import json
+from ooapi._podcast_controller import PodcastController
 
 app = Flask(__name__)
 controller = PodcastController()
@@ -20,14 +23,16 @@ def getPod():
 		
 		podInfo = controller.getPodcastInfo(url)
 		
+		print(podInfo)
+		
 		if podInfo is None:
 			output["error"] = "URL is not a valid podcast url"
 		else:
 			output = podInfo
 			
 			
-	except:
-		output["error"] = "POST body is not valid"
+	except Exception as e:
+		output["error"] = f"POST body is not valid: f{e}"
 		
 	return json.dumps(output)
 	
