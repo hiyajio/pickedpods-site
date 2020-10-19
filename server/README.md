@@ -1,4 +1,4 @@
-# Backend
+# Server
 ## JSON Specification
 
 |Request Type | Resource endpoint | Body | Response |
