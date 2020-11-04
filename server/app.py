@@ -5,9 +5,13 @@ import json, sys
 sys.path.append("../")
 
 from flask import Flask, request
+
+from flask_cors import CORS
+
 from ooapi._podcast_controller import PodcastController
 
 app = Flask(__name__)
+CORS(app)
 controller = PodcastController()
 
 @app.route('/podcasts/all', methods=["GET"])

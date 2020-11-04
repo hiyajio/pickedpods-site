@@ -9,4 +9,5 @@ Programming Paradigms Final Project
 pip3 install bs4
 pip3 install lxml
 pip3 install Flask
+pip3 install flask-cors
 ```
