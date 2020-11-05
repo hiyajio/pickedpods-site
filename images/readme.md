@@ -1,7 +1,9 @@
 # Layout Images
 
 ![1-start-up](./1-start-up.png)
+* 1-start-up.png
 ![2-scroll-using-side-list](./2-scroll-using-side-list.png)
+* 2-scroll-using-side-list.png
 ![3-add-rss-feed-input](./3-add-rss-feed-input.png)
 ![4-add-rss-feed-btn-hover](./4-add-rss-feed-btn-hover.png)
 ![5-add-rss-feed-result](./5-add-rss-feed-result.png)
