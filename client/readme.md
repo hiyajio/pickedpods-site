@@ -23,9 +23,9 @@
 
 3. Miscellaneous jQuery-CSS-HTML interactivity such as:
     * Click on the podcast name in the side area will make the website scroll to that podcast in the main-area
+    ![2-scroll-using-side-list](../images/2-scroll-using-side-list.png)
     * Allow the user to scroll not only in the main area buy also the side area depending on the length of the podcast list
+    ![5-add-rss-feed-result](../images/5-add-rss-feed-result.png)
     * Scroll down a little a small button will appear at the lower right signifying the scroll-to-top functionality
-
-![5-add-rss-feed-result](../images/5-add-rss-feed-result.png)
 
 ---
