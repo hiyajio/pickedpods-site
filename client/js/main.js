@@ -19,15 +19,21 @@ jQuery(document).ready(function ($) {
 
 	httpStart();
 
-	/* $("#qty_input").on("change", function () {
+	$("#qty_input").change(function () {
 		rateValue = $(this).val();
+		document.getElementById("qty_input").value = rateValue;
 
-		for (var j = 1; j <= JSONresult.length; j++) {
+		var listCount = document.getElementsByClassName("pb-embed");
+
+		for (var j = 1; j <= listCount.length; j++) {
 			document
 				.getElementById("podcast-inner" + j)
 				.setAttribute("data-limit", rateValue);
 		}
-	}); */
+
+		clearApp();
+		httpStart();
+	});
 
 	var siteMenuClone = function () {
 		$(".js-clone-nav").each(function () {
@@ -219,6 +225,24 @@ jQuery(document).ready(function ($) {
 	siteCountDown();
 });
 
+function clearApp() {
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", "http://localhost:12345/podcasts/all"); // false for synchronous request
+	xmlHttp.onload = function (e) {
+		var JSONresult = JSON.parse(xmlHttp.responseText);
+
+		for (var i = 1; i <= JSONresult.length; i++) {
+			var list_item = document.getElementById("podcast-side" + i);
+			list_item.remove();
+
+			var div_item = document.getElementById("podcast-player" + i);
+			div_item.remove();
+		}
+		pb.init();
+	};
+	xmlHttp.send(null);
+}
+
 function httpStart() {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", "http://localhost:12345/podcasts/all"); // false for synchronous request
@@ -273,7 +297,7 @@ function httpStart() {
 
 			var embed_div = document.createElement("div");
 			embed_div.setAttribute("class", "pb-embed");
-			embed_div.setAttribute("data-limit", "1");
+			embed_div.setAttribute("data-limit", rateValue);
 			embed_div.setAttribute("id", "podcast-inner" + j);
 			embed_div.setAttribute("data-feed", JSONresult[j - 1]["rssFeed"]);
 			playable_div.appendChild(embed_div);
