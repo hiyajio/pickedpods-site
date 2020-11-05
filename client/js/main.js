@@ -7,7 +7,7 @@ AOS.init({
 let podcastSideList = document.querySelector("#podcast-side-list");
 let podcastMainArea = document.querySelector("#podcast-main-area");
 
-let urlEndpoint = "http://zacharysy.net:4269/";
+let urlEndpoint = "https://zacharysy.net:4269/";
 // let urlEndpoint = "http://localhost:12345/"
 
 let addButton = document.querySelector("#add-button");
