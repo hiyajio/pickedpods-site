@@ -291,13 +291,14 @@ function addURLFromAPI() {
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
 	var url = "http://localhost:12345/podcasts/subscribe";
-	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
 	xhr.onload = function (e) {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
+		location.reload();
 	};
 
 	// set up onerror
@@ -321,14 +322,15 @@ function deleteURLFromAPI() {
 	// var feedValue = document.querySelector("#feed-value");
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
-	var url = "http://localhost:12345/podcasts/subscribe";
-	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+	var url = "http://localhost:12345/podcasts/unsubscribe";
+	xhr.open("DELETE", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
 	xhr.onload = function (e) {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
+		location.reload();
 	};
 
 	// set up onerror
@@ -344,6 +346,8 @@ function deleteURLFromAPI() {
 			url: feedValue,
 		})
 	);
+
+	location.reload();
 } // end of get form info
 
 function makeNetworkCallToAgeApi(feedValue) {
@@ -351,7 +355,7 @@ function makeNetworkCallToAgeApi(feedValue) {
 	// set up url
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
 	var url = "http://localhost:12345/podcasts/subscribe";
-	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
 	xhr.onload = function (e) {
