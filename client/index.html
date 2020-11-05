@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
   <link rel="stylesheet" href="css/aos.css">
-
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -38,12 +37,12 @@
         <div class="row align-items-center">
           <h1 class="site-logo pr-2 text-left text-md-left fixed-top pl-4 pt-2"><a href="index.html" class="h2">PickedPods<span class="text-info">.</span> </a></h1>
           <nav class="site-navigation text-right text-md-right fixed-top pr-2 pt-2" role="navigation">
-            <ul class="site-menu js-clone-nav d-none d-lg-block">
-              <li><input class="form-control py-4" type="search" placeholder="RSS Feed URL" aria-label="Search"></li>
-              <li><button class="btn btn-outline-success py-3" type="submit" id="add-button">Add</button></li>
-              <li><button class="btn btn-outline-danger py-3" type="submit" id="delete-button">Delete</button></li>
-              <li><input type="number" id="qty_input" class="form-control py-4" value="2" min="1" max="5"></li>
-            </ul>
+            <form action="">
+              <input id="podcast-search" class="form-newly py-4" name="text-input" type="text" placeholder="RSS Feed URL">
+              <button class="btn btn-outline-success py-3" type="button" id="add-button">Add</button>
+              <button class="btn btn-outline-danger py-3" type="button" id="delete-button">Delete</button>
+              <input type="number" id="qty_input" class="form-newly py-4" value="2" min="1" max="5">
+            </form>
           </nav>
         </div>
       </div>
