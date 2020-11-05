@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>PickedPods</title>
   <meta charset="utf-8">
@@ -18,6 +19,7 @@
   <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 
   <div class="site-wrap">
@@ -31,14 +33,15 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
-
     <header class="site-navbar py-4" role="banner">
       <div class="container">
         <div class="row align-items-center">
-          <h1 class="site-logo pr-2 text-left text-md-left fixed-top pl-4 pt-2"><a href="index.html" class="h2">PickedPods<span class="text-info">.</span> </a></h1>
+          <h1 class="site-logo pr-2 text-left text-md-left fixed-top pl-4 pt-2"><a href="index.html"
+              class="h2">PickedPods<span class="text-info">.</span> </a></h1>
           <nav class="site-navigation text-right text-md-right fixed-top pr-2 pt-2" role="navigation">
             <form action="">
-              <input id="podcast-search" class="form-newly py-4" name="text-input" type="text" placeholder="RSS Feed URL">
+              <input id="podcast-search" class="form-newly py-4" name="text-input" type="text"
+                placeholder="RSS Feed URL">
               <button class="btn btn-outline-success py-3" type="button" id="add-button">Add</button>
               <button class="btn btn-outline-danger py-3" type="button" id="delete-button">Delete</button>
               <input type="number" id="qty_input" class="form-newly py-4" value="2" min="1" max="5">
@@ -50,35 +53,39 @@
 
     <div class="container pt-5 hero">
       <div class="row align-items-center text-center text-md-left">
+        <div class="col-lg-1"></div>
         <div class="col-lg-5">
           <h1 class="mb-3 display-4">A Curated List of Podcasts from All Platforms</h1>
           <p>Our recommendations for podcasts to listen to when you need 'em updated with their latest episodes!</p>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-6">
           <img src="images/1x/asset-1.png" alt="Image" class="img-fluid">
         </div>
       </div>
     </div>
 
-    <div class="col-lg-3 fixed-top sidebar-item">
+    <div class="col-lg-2 fixed-top sidebar-item">
       <div class="featured-user">
-        <h3 class="mb-4">Podcast List</h3>
-        <ul class="list-unstyled" id="podcast-side-list">
-        </ul>
+        <h3 class="mb-4">Podcasts</h3>
+        <div class="scrollable-list">
+          <ul class="list-unstyled" id="podcast-side-list">
+            <!-- Dynamically generate side list through GET request -->
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="site-section">
       <div class="container align-content-center">
-
         <div class="row align-content-center">
-          <div class="col-lg-1"></div>
-          <div class="col-lg-10" id="podcast-main-area">
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="col-lg-2"></div>
+          <div class="col-lg-9" id="podcast-main-area">
+            <!-- Dynamically generate main area through GET request -->
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
   </div>
 
   <script src="js/jquery-3.3.1.min.js"></script>
@@ -96,7 +103,7 @@
   <script src="js/bundle.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       var mediaElements = document.querySelectorAll('video, audio'), total = mediaElements.length;
 
       for (var i = 0; i < total; i++) {
@@ -118,4 +125,5 @@
   <script src="js/main.js"></script>
 
 </body>
+
 </html>
