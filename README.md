@@ -83,7 +83,8 @@ pip3 install flask-cors
 	- run `python3 test_ws.py`
 
 # Client/JS Frontend
-## User Interactions
+
+# User Interactions
 
 > __Note__: Current API is hosted in linode so the URL (http://zacharysy.gitlab.io/pickedpods/) should work in loading the interactions (if it doesn't, simply run the server and client locally). If Chrome or any other browser clings to the HTTPS redirect, choose another browser such as Safari (through our testing, both Chrome and Safari have worked).
 
@@ -112,5 +113,40 @@ pip3 install flask-cors
     * Allow the user to scroll not only in the main area buy also the side area depending on the length of the podcast list
     ![5-add-rss-feed-result](./images/5-add-rss-feed-result.png)
     * Scroll down a little a small button will appear at the lower right signifying the scroll-to-top functionality
+
+# Layout Images
+
+## 1-start-up
+![1-start-up](./1-start-up.png)
+
+## 2-scroll-using-side-list
+![2-scroll-using-side-list](./2-scroll-using-side-list.png)
+
+## 3-add-rss-feed-input
+![3-add-rss-feed-input](./3-add-rss-feed-input.png)
+
+## 4-add-rss-feed-btn-hover
+![4-add-rss-feed-btn-hover](./4-add-rss-feed-btn-hover.png)
+
+## 5-add-rss-feed-result
+![5-add-rss-feed-result](./5-add-rss-feed-result.png)
+
+## 6-delete-rss-feed-btn-hover
+![6-delete-rss-feed-btn-hover](./6-delete-rss-feed-btn-hover.png)
+
+## 7-delete-rss-feed-result
+![7-delete-rss-feed-result](./7-delete-rss-feed-result.png)
+
+## 8-highlight-number-of-eps-1
+![8-highlight-number-of-eps-1](./8-highlight-number-of-eps-1.png)
+
+## 9-show-number-of-eps-1
+![9-show-number-of-eps-1](./9-show-number-of-eps-1.png)
+
+## 10-highlight-number-of-eps-2
+![10-highlight-number-of-eps-2](./10-highlight-number-of-eps-2.png)
+
+## 11-show-number-of-eps-2
+![11-show-number-of-eps-2](./11-show-number-of-eps-2.png)
 
 ---
