@@ -1,6 +1,6 @@
 # Layout Images
 
-### 1-start-up.png
+###<center 1-start-up.png</center>
 ![1-start-up](./1-start-up.png)
 * 1-start-up.png
 ![2-scroll-using-side-list](./2-scroll-using-side-list.png)
