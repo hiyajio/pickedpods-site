@@ -1,3 +1,7 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .pb-embed {
 	margin-left: 5px;
 	margin-right: 5px;
@@ -41,4 +45,14 @@
 .sidebar-item {
   padding-top: 100px;
   margin-left: 50px;
+}
+
+.scrollable-list {
+  height: 90vh;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  display: none;
 }
