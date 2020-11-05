@@ -4,7 +4,7 @@ pages:
   stage: deploy
   script:
     - mkdir .public
-    - cp -r client/* .public
+    - cp -r jsfrontend/* .public
     - mv .public public
   artifacts:
     paths:
