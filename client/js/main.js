@@ -7,6 +7,9 @@ AOS.init({
 let podcastSideList = document.querySelector("#podcast-side-list");
 let podcastMainArea = document.querySelector("#podcast-main-area");
 
+let urlEndpoint = "http://zacharysy.net:4269/";
+// let urlEndpoint = "http://localhost:12345/"
+
 let addButton = document.querySelector("#add-button");
 let deleteButton = document.querySelector("#delete-button");
 addButton.onmouseup = addURLFromAPI;
@@ -227,7 +230,7 @@ jQuery(document).ready(function ($) {
 
 function clearApp() {
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", "http://localhost:12345/podcasts/all"); // false for synchronous request
+	xmlHttp.open("GET", urlEndpoint + "podcasts/all"); // false for synchronous request
 	xmlHttp.onload = function (e) {
 		var JSONresult = JSON.parse(xmlHttp.responseText);
 
@@ -245,7 +248,7 @@ function clearApp() {
 
 function httpStart() {
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", "http://localhost:12345/podcasts/all"); // false for synchronous request
+	xmlHttp.open("GET", urlEndpoint + "podcasts/all"); // false for synchronous request
 	xmlHttp.onload = function (e) {
 		var JSONresult = JSON.parse(xmlHttp.responseText);
 
@@ -311,7 +314,7 @@ function httpStart() {
 function addURLFromAPI() {
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
-	var url = "http://localhost:12345/podcasts/subscribe";
+	var url = urlEndpoint + "podcasts/subscribe";
 	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
@@ -340,7 +343,7 @@ function addURLFromAPI() {
 function deleteURLFromAPI() {
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
-	var url = "http://localhost:12345/podcasts/unsubscribe";
+	var url = urlEndpoint + "podcasts/unsubscribe";
 	xhr.open("DELETE", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
@@ -372,7 +375,7 @@ function makeNetworkCallToAgeApi(feedValue) {
 	console.log("entered make nw call" + feedValue);
 	// set up url
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
-	var url = "http://localhost:12345/podcasts/subscribe";
+	var url = urlEndpoint + "podcasts/subscribe";
 	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
 
 	// set up onload
