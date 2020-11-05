@@ -285,9 +285,6 @@ function httpStart() {
 }
 
 function addURLFromAPI() {
-	console.log("entered addURLFromAPI!");
-	// call displayinfo
-	// var feedValue = document.querySelector("#feed-value");
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
 	var url = "http://localhost:12345/podcasts/subscribe";
@@ -317,9 +314,6 @@ function addURLFromAPI() {
 } // end of get form info
 
 function deleteURLFromAPI() {
-	console.log("entered deleteURLFromAPI!");
-	// call displayinfo
-	// var feedValue = document.querySelector("#feed-value");
 	var feedValue = document.getElementById("podcast-search").value;
 	var xhr = new XMLHttpRequest(); // 1 - creating request object
 	var url = "http://localhost:12345/podcasts/unsubscribe";
