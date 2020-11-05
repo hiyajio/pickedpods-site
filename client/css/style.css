@@ -119,6 +119,20 @@ a:hover {
 	box-shadow: none !important;
 }
 
+.form-newly {
+	height: 43px !important;
+}
+.form-newly:active,
+.form-newly:focus {
+	border-color: #3ca59d !important;
+}
+.form-newly:hover,
+.form-newly:active,
+.form-newly:focus {
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
 .site-section {
 	padding: 2.5em 0;
 }
