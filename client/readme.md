@@ -1,6 +1,6 @@
 # User Interactions
 
-> __Note__: Current API is hosted in linode so the above URL should work in loading the interactions.
+> __Note__: Current API is hosted in linode so the URL (http://zacharysy.gitlab.io/pickedpods/) should work in loading the interactions (if it doesn't, simply run the server and client locally).
 
 1. At page startup, 2 GET requests are initiated to display the initial list of podcasts in the list in the side area as well as the latest episode of each in the main area
 2. After these are loaded, users can use the toolbar on the top right hand side of the screen to do 3 interactive things:
