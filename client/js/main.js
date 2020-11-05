@@ -4,10 +4,14 @@ AOS.init({
 	once: true,
 });
 
-let pTitle = document.querySelector("#podcast-title-1");
-let pAuthor = document.querySelector("#podcast-author-1");
 let podcastSideList = document.querySelector("#podcast-side-list");
 let podcastMainArea = document.querySelector("#podcast-main-area");
+
+let addButton = document.querySelector("#add-button");
+let deleteButton = document.querySelector("#delete-button");
+addButton.onmouseup = addURLFromAPI;
+deleteButton.onmouseup = deleteURLFromAPI;
+
 let rateValue = $("#qty_input").val();
 
 jQuery(document).ready(function ($) {
@@ -269,7 +273,7 @@ function httpStart() {
 
 			var embed_div = document.createElement("div");
 			embed_div.setAttribute("class", "pb-embed");
-			embed_div.setAttribute("data-limit", rateValue);
+			embed_div.setAttribute("data-limit", "1");
 			embed_div.setAttribute("id", "podcast-inner" + j);
 			embed_div.setAttribute("data-feed", JSONresult[j - 1]["rssFeed"]);
 			playable_div.appendChild(embed_div);
@@ -280,4 +284,110 @@ function httpStart() {
 	xmlHttp.send(null);
 }
 
-function checkFilter() {}
+function addURLFromAPI() {
+	console.log("entered addURLFromAPI!");
+	// call displayinfo
+	// var feedValue = document.querySelector("#feed-value");
+	var feedValue = document.getElementById("podcast-search").value;
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = "http://localhost:12345/podcasts/subscribe";
+	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+} // end of get form info
+
+function deleteURLFromAPI() {
+	console.log("entered deleteURLFromAPI!");
+	// call displayinfo
+	// var feedValue = document.querySelector("#feed-value");
+	var feedValue = document.getElementById("podcast-search").value;
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = "http://localhost:12345/podcasts/subscribe";
+	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+} // end of get form info
+
+function makeNetworkCallToAgeApi(feedValue) {
+	console.log("entered make nw call" + feedValue);
+	// set up url
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = "http://localhost:12345/podcasts/subscribe";
+	xhr.open("POST", url, true); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+} // end of make nw call
+
+function updateAgeWithResponse(name, response_text) {
+	console.log("entered updateAgeWithResponse!");
+
+	var response_json = JSON.parse(response_text);
+	// update a label
+	var label1 = document.getElementById("response-line1");
+
+	if (response_json["age"] == null) {
+		label1.innerHTML = "Apologies, we could not find your name.";
+		resetLabels(1);
+	} else {
+		var age = parseInt(response_json["age"]);
+		makeNetworkCallToPokeAPI(name, age);
+		resetLabels(2);
+	}
+} // end of updateAgeWithResponse
