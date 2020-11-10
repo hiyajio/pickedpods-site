@@ -4,10 +4,17 @@ AOS.init({
 	once: true,
 });
 
-let pTitle = document.querySelector("#podcast-title-1");
-let pAuthor = document.querySelector("#podcast-author-1");
 let podcastSideList = document.querySelector("#podcast-side-list");
 let podcastMainArea = document.querySelector("#podcast-main-area");
+
+let urlEndpoint = "http://zacharysy.net:4269/";
+// let urlEndpoint = "http://localhost:12345/"
+
+let addButton = document.querySelector("#add-button");
+let deleteButton = document.querySelector("#delete-button");
+addButton.onmouseup = addURLFromAPI;
+deleteButton.onmouseup = deleteURLFromAPI;
+
 let rateValue = $("#qty_input").val();
 
 jQuery(document).ready(function ($) {
@@ -15,15 +22,21 @@ jQuery(document).ready(function ($) {
 
 	httpStart();
 
-	/* $("#qty_input").on("change", function () {
+	$("#qty_input").change(function () {
 		rateValue = $(this).val();
+		document.getElementById("qty_input").value = rateValue;
 
-		for (var j = 1; j <= JSONresult.length; j++) {
+		var listCount = document.getElementsByClassName("pb-embed");
+
+		for (var j = 1; j <= listCount.length; j++) {
 			document
 				.getElementById("podcast-inner" + j)
 				.setAttribute("data-limit", rateValue);
 		}
-	}); */
+
+		clearApp();
+		httpStart();
+	});
 
 	var siteMenuClone = function () {
 		$(".js-clone-nav").each(function () {
@@ -215,9 +228,27 @@ jQuery(document).ready(function ($) {
 	siteCountDown();
 });
 
+function clearApp() {
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", urlEndpoint + "podcasts/all"); // false for synchronous request
+	xmlHttp.onload = function (e) {
+		var JSONresult = JSON.parse(xmlHttp.responseText);
+
+		for (var i = 1; i <= JSONresult.length; i++) {
+			var list_item = document.getElementById("podcast-side" + i);
+			list_item.remove();
+
+			var div_item = document.getElementById("podcast-player" + i);
+			div_item.remove();
+		}
+		pb.init();
+	};
+	xmlHttp.send(null);
+}
+
 function httpStart() {
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", "http://localhost:12345/podcasts/all"); // false for synchronous request
+	xmlHttp.open("GET", urlEndpoint + "podcasts/all"); // false for synchronous request
 	xmlHttp.onload = function (e) {
 		var JSONresult = JSON.parse(xmlHttp.responseText);
 
@@ -280,4 +311,108 @@ function httpStart() {
 	xmlHttp.send(null);
 }
 
-function checkFilter() {}
+function addURLFromAPI() {
+	var feedValue = document.getElementById("podcast-search").value;
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = urlEndpoint + "podcasts/subscribe";
+	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+		location.reload();
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+} // end of get form info
+
+function deleteURLFromAPI() {
+	var feedValue = document.getElementById("podcast-search").value;
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = urlEndpoint + "podcasts/unsubscribe";
+	xhr.open("DELETE", url, false); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+		location.reload();
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+
+	location.reload();
+} // end of get form info
+
+function makeNetworkCallToAgeApi(feedValue) {
+	console.log("entered make nw call" + feedValue);
+	// set up url
+	var xhr = new XMLHttpRequest(); // 1 - creating request object
+	var url = urlEndpoint + "podcasts/subscribe";
+	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
+
+	// set up onload
+	xhr.onload = function (e) {
+		// triggered when response is received
+		// must be written before send
+		console.log(xhr.responseText);
+	};
+
+	// set up onerror
+	xhr.onerror = function (e) {
+		// triggered when error response is received and must be before send
+		console.error(xhr.statusText);
+	};
+
+	// actually make the network call
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(
+		JSON.stringify({
+			url: feedValue,
+		})
+	);
+} // end of make nw call
+
+function updateAgeWithResponse(name, response_text) {
+	console.log("entered updateAgeWithResponse!");
+
+	var response_json = JSON.parse(response_text);
+	// update a label
+	var label1 = document.getElementById("response-line1");
+
+	if (response_json["age"] == null) {
+		label1.innerHTML = "Apologies, we could not find your name.";
+		resetLabels(1);
+	} else {
+		var age = parseInt(response_json["age"]);
+		makeNetworkCallToPokeAPI(name, age);
+		resetLabels(2);
+	}
+} // end of updateAgeWithResponse
