@@ -176,6 +176,7 @@ function addURLFromAPI() {
 	);
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
+	httpStart(); // call to fill side list and main area divs with API ingestion
 } // end of addURLFromAPI()
 
 // DELETE function from API using URL endpoint podcasts/unsubscribe => Delete a podcast in list
@@ -207,6 +208,7 @@ function deleteURLFromAPI() {
 	);
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
+	httpStart(); // call to fill side list and main area divs with API ingestion
 } // end of deleteURLFromAPI()
 
 // Copy to clipboard functionality
