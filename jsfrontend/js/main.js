@@ -85,7 +85,7 @@ function httpStart() {
 
 			var a_align = document.createElement("a");
 			a_align.setAttribute("class", "d-flex align-items-center");
-			a_align.setAttribute("href", "#podcast-player" + i);
+			a_align.setAttribute("href", "#podcast-player-" + i);
 			list_item.appendChild(a_align);
 
 			var info_feed = document.createElement("a");
