@@ -1,5 +1,6 @@
 # User Interactions
 
+> __Note__: For best results, run both locally and use chrome as browser. There are jQuery incompatibility issues in Safari and the HTTP/HTTPS problem for a live chrome version. If you can run the live url (http://zacharysy.gitlab.io/pickedpods/) through HTTP for chrome, that would be best, but if not, simply run both the server and client locally and be sure they are connected properly (shown in code walkthrough).
 > __Note__: Current API is hosted in linode so the URL (http://zacharysy.gitlab.io/pickedpods/) should work in loading the interactions (if it doesn't, simply run the server and client locally). If Chrome or any other browser clings to the HTTPS redirect, choose another browser such as Safari (through our testing, both Chrome and Safari have worked).
 
 1. At page startup, 2 GET requests are initiated to display the initial list of podcasts in the list in the side area as well as the latest episode of each in the main area
@@ -27,5 +28,11 @@
     * Allow the user to scroll not only in the main area buy also the side area depending on the length of the podcast list
     ![5-add-rss-feed-result](../images/5-add-rss-feed-result.png)
     * Scroll down a little a small button will appear at the lower right signifying the scroll-to-top functionality
+    ![12-scroll-to-top-btn-hover.png](../images/12-scroll-to-top-btn-hover.png)
+    ![13-scroll-to-top-result.png](../images/13-scroll-to-top-result.png)
+    * Click on the square buttons next to the podcast listing in the side area to copy that podcast's rss feed url link to paste later on for deletion
+    ![14-copy-to-clipboard-btn-hover.png](../images/14-copy-to-clipboard-btn-hover.png)
+    ![15-copy-to-clipboard-result.png](../images/15-copy-to-clipboard-result.png)
+    ![16-copy-to-clipboard-paste-result.png](../images/16-copy-to-clipboard-paste-result.png)
 
 ---

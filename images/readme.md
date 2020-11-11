@@ -33,4 +33,19 @@
 ## 11-show-number-of-eps-2
 ![11-show-number-of-eps-2](./11-show-number-of-eps-2.png)
 
+## 12-scroll-to-top-btn-hover
+![12-scroll-to-top-btn-hover](./12-scroll-to-top-btn-hover.png)
+
+## 13-scroll-to-top-result
+![13-scroll-to-top-result](./13-scroll-to-top-result.png)
+
+## 14-copy-to-clipboard-btn-hover
+![14-copy-to-clipboard-btn-hover](./14-copy-to-clipboard-btn-hover.png)
+
+## 15-copy-to-clipboard-result
+![15-copy-to-clipboard-result](./15-copy-to-clipboard-result.png)
+
+## 16-copy-to-clipboard-paste-result
+![16-copy-to-clipboard-paste-result](./16-copy-to-clipboard-paste-result.png)
+
 ---
