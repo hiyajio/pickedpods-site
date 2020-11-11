@@ -159,6 +159,8 @@ function addURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
+		clearApp(); // call clear to refresh the div areas with updated list of podcasts
+		httpStart(); // call to fill side list and main area divs with API ingestion
 	};
 
 	// set up onerror
@@ -191,6 +193,8 @@ function deleteURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
+		clearApp(); // call clear to refresh the div areas with updated list of podcasts
+		httpStart(); // call to fill side list and main area divs with API ingestion
 	};
 
 	// set up onerror
