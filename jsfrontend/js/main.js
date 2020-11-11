@@ -6,8 +6,8 @@ AOS.init({
 });
 
 /* IMPORTANT - Be sure you are using the appropriate endpoint depending on how you are testing */
-// let urlEndpoint = "http://zacharysy.net:4269/"; // uncomment when using live and comment next declaration
-let urlEndpoint = "http://localhost:12345/"; // uncomment when using local and comment previous declaration
+let urlEndpoint = "http://zacharysy.net:4269/"; // uncomment when using live and comment next declaration
+// let urlEndpoint = "http://localhost:12345/"; // uncomment when using local and comment previous declaration
 
 // Set up required variables for DOM tree manipulation
 let podcastSideList = document.querySelector("#podcast-side-list");
