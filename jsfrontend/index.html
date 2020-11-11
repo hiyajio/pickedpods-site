@@ -25,17 +25,19 @@
     </div>
 
     <header class="site-navbar py-4" role="banner">
-      <div class="container">
+      <div class="container fixed-top">
         <div class="row align-items-center">
-          <h1 class="site-logo pr-2 text-left text-md-left fixed-top pl-5 pt-3">
-            <a href="index.html" class="h2">PickedPods<span class="text-info">.</span>
-            </a>
-          </h1>
-          <nav class="site-navigation text-right text-md-right fixed-top pt-3" role="navigation">
+          <nav class="site-navigation text-right text-md-right fixed-top" role="navigation">
             <div class="row">
-              <div class="col-lg-9"></div>
+              <div class="col-lg-3">
+            <h1 class="site-logo pr-2 text-left text-md-left pl-5 pt-4">
+              <a href="index.html" class="h2 site-label">PickedPods<span class="text-info">.</span>
+              </a>
+            </h1>
+            </div>
+              <div class="col-lg-6"></div>
               <form action="" class="col-lg-3">
-                <div class="row">
+                <div class="row pt-4">
                   <input id="podcast-search" class="col-6 form-control py-4" name="text-input" type="text"
                     placeholder="RSS Feed URL" />
                   <button class="btn btn-outline-info py-3" type="button" id="add-button">

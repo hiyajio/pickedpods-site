@@ -109,8 +109,8 @@ a:hover {
 	color: #000;
 }
 
-.site-logo {
-  z-index: 2000;
+.site-navbar .site-logo a:hover {
+	color: #e0e0e0;
 }
 
 .site-mobile-menu {
