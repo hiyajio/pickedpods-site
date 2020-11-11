@@ -102,7 +102,7 @@ a:hover {
 .site-navbar {
 	margin-bottom: 0px;
 	z-index: 1999;
-	position: relative;
+  position: relative;
 }
 
 .site-navbar .site-logo a {
@@ -111,7 +111,6 @@ a:hover {
 
 .site-logo {
   z-index: 2000;
-  cursor: pointer;
 }
 
 .site-mobile-menu {
@@ -309,7 +308,9 @@ body::-webkit-scrollbar {
 
 .sidebar-item {
 	padding-top: 100px;
-	margin-left: 50px;
+  margin-left: 20px;
+  -webkit-box-shadow: 20px 0 20px -10px rgba(0, 0, 0, 0.1);
+	box-shadow: 20px 0 20px -10px rgba(0, 0, 0, 0.1);
 }
 
 .scrollable-list {
