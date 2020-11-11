@@ -133,7 +133,6 @@ function addURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
-		location.reload();
 	};
 
 	// set up onerror
@@ -149,6 +148,8 @@ function addURLFromAPI() {
 			url: feedValue,
 		})
 	);
+
+	clearApp();
 } // end of get form info
 
 function deleteURLFromAPI() {
@@ -162,7 +163,6 @@ function deleteURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
-		location.reload();
 	};
 
 	// set up onerror
@@ -179,51 +179,5 @@ function deleteURLFromAPI() {
 		})
 	);
 
-	location.reload();
+	clearApp();
 } // end of get form info
-
-function makeNetworkCallToAgeApi(feedValue) {
-	console.log("entered make nw call" + feedValue);
-	// set up url
-	var xhr = new XMLHttpRequest(); // 1 - creating request object
-	var url = urlEndpoint + "podcasts/subscribe";
-	xhr.open("POST", url, false); // 2 - associates request attributes with xhr
-
-	// set up onload
-	xhr.onload = function (e) {
-		// triggered when response is received
-		// must be written before send
-		console.log(xhr.responseText);
-	};
-
-	// set up onerror
-	xhr.onerror = function (e) {
-		// triggered when error response is received and must be before send
-		console.error(xhr.statusText);
-	};
-
-	// actually make the network call
-	xhr.setRequestHeader("Content-Type", "application/json");
-	xhr.send(
-		JSON.stringify({
-			url: feedValue,
-		})
-	);
-} // end of make nw call
-
-function updateAgeWithResponse(name, response_text) {
-	console.log("entered updateAgeWithResponse!");
-
-	var response_json = JSON.parse(response_text);
-	// update a label
-	var label1 = document.getElementById("response-line1");
-
-	if (response_json["age"] == null) {
-		label1.innerHTML = "Apologies, we could not find your name.";
-		resetLabels(1);
-	} else {
-		var age = parseInt(response_json["age"]);
-		makeNetworkCallToPokeAPI(name, age);
-		resetLabels(2);
-	}
-} // end of updateAgeWithResponse
