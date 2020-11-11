@@ -109,6 +109,11 @@ a:hover {
 	color: #000;
 }
 
+.site-logo {
+  z-index: 2000;
+  cursor: pointer;
+}
+
 .site-mobile-menu {
 	width: 300px;
 	position: fixed;
