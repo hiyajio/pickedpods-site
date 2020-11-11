@@ -7,8 +7,8 @@ AOS.init({
 let podcastSideList = document.querySelector("#podcast-side-list");
 let podcastMainArea = document.querySelector("#podcast-main-area");
 
-let urlEndpoint = "http://zacharysy.net:4269/";
-// let urlEndpoint = "http://localhost:12345/"
+// let urlEndpoint = "http://zacharysy.net:4269/"; // uncomment when using live and comment next declaration
+let urlEndpoint = "http://localhost:12345/"; // uncomment when using local and comment previous declaration
 
 let addButton = document.querySelector("#add-button");
 let deleteButton = document.querySelector("#delete-button");
