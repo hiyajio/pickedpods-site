@@ -7,8 +7,7 @@
 > __Note__: For checking, there are only 3 important files to take note off: index.html (from jsfrontend/), style.css (from jsfrontend/css/), and main.js (jsfrontend/js/).
 
 1. At page startup, 2 GET requests are initiated to display the initial list of podcasts in the list in the side area as well as the latest episode of each in the main area
-
-![1-start-up](../images/1-start-up.png)
+    ![1-start-up](../images/1-start-up.png)
 
 2. After these are loaded, users can use the toolbar on the top right hand side of the screen to do 3 interactive things:
     * Add an existing podcast to the list through its RSS feed url (most podcasts have this and can be google-able for testing) by pasting the RSS feed url in the input labeled 'RSS Feed URL'  and clicking 'ADD' (done using POST)
