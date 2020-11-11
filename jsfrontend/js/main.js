@@ -48,7 +48,6 @@ function updateCount(event) {
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
 	httpStart(); // call to fill side list and main area divs with API ingestion
-	location.reload();
 } // end of updateCount()
 
 // Clears web app of side list and main area elements
@@ -160,7 +159,6 @@ function addURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
-		location.reload();
 	};
 
 	// set up onerror
@@ -178,7 +176,6 @@ function addURLFromAPI() {
 	);
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
-	location.reload();
 } // end of addURLFromAPI()
 
 // DELETE function from API using URL endpoint podcasts/unsubscribe => Delete a podcast in list
@@ -193,7 +190,6 @@ function deleteURLFromAPI() {
 		// triggered when response is received
 		// must be written before send
 		console.log(xhr.responseText);
-		location.reload();
 	};
 
 	// set up onerror
@@ -211,7 +207,6 @@ function deleteURLFromAPI() {
 	);
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
-	location.reload();
 } // end of deleteURLFromAPI()
 
 // Copy to clipboard functionality
