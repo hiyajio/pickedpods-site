@@ -307,8 +307,8 @@ body::-webkit-scrollbar {
 }
 
 .sidebar-item {
-	padding-top: 100px;
-  margin-left: 20px;
+	padding-top: 125px;
+  margin-left: 40px;
   -webkit-box-shadow: 20px 0 20px -10px rgba(0, 0, 0, 0.1);
 	box-shadow: 20px 0 20px -10px rgba(0, 0, 0, 0.1);
 }
