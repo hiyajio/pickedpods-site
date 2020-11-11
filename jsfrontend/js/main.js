@@ -48,6 +48,7 @@ function updateCount(event) {
 
 	clearApp(); // call clear to refresh the div areas with updated list of podcasts
 	httpStart(); // call to fill side list and main area divs with API ingestion
+	location.reload();
 } // end of updateCount()
 
 // Clears web app of side list and main area elements
