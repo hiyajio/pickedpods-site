@@ -94,6 +94,8 @@ pip3 install flask-cors
 
 > __Note__: Current API is hosted in linode so the URL (http://zacharysy.gitlab.io/pickedpods/) should work in loading the interactions (if it doesn't, simply run the server and client locally). If Chrome or any other browser clings to the HTTPS redirect, choose another browser such as Safari (through our testing, both Chrome and Safari have worked).
 
+> __Note__: For checking, there are only 3 important files to take note off: index.html (from jsfrontend/), style.css (from jsfrontend/css/), and main.js (jsfrontend/js/).
+
 1. At page startup, 2 GET requests are initiated to display the initial list of podcasts in the list in the side area as well as the latest episode of each in the main area
 
 ![1-start-up](../images/1-start-up.png)

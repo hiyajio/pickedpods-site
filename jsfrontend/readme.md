@@ -1,7 +1,10 @@
 # User Interactions
 
 > __Note__: For best results, run both locally and use chrome as browser. There are jQuery incompatibility issues in Safari and the HTTP/HTTPS problem for a live chrome version. If you can run the live url (http://zacharysy.gitlab.io/pickedpods/) through HTTP for chrome, that would be best, but if not, simply run both the server and client locally and be sure they are connected properly (shown in code walkthrough).
+
 > __Note__: Current API is hosted in linode so the URL (http://zacharysy.gitlab.io/pickedpods/) should work in loading the interactions (if it doesn't, simply run the server and client locally). If Chrome or any other browser clings to the HTTPS redirect, choose another browser such as Safari (through our testing, both Chrome and Safari have worked).
+
+> __Note__: For checking, there are only 3 important files to take note off: index.html (from jsfrontend/), style.css (from jsfrontend/css/), and main.js (jsfrontend/js/).
 
 1. At page startup, 2 GET requests are initiated to display the initial list of podcasts in the list in the side area as well as the latest episode of each in the main area
 
